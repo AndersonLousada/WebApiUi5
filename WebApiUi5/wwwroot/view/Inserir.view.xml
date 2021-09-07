@@ -9,7 +9,6 @@
 
 	<Page showNavButton="true" navButtonPress=".onNavBack" title="Editar Cadastro">
 		<customHeader>
-
 			<Toolbar>
 				<Button type="Back" press=".onNavBack" />
 				<ToolbarSpacer/>
@@ -17,15 +16,12 @@
 				<ToolbarSpacer/>
 			</Toolbar>
 		</customHeader>
-
 		<VBox class="sapUiSmallMargin">
-
 			<f:Form id="FormChange480_12120" editable="true">
 				<f:title>
 					<core:Title text="Dados do cliente" />
 				</f:title>
 				<f:layout>
-
 					<f:ResponsiveGridLayout
 						labelSpanXL="4"
 						labelSpanL="4"
@@ -39,14 +35,14 @@
 						columnsXL="2"
 						columnsL="2"
 						columnsM="1"
-						singleContainerFullSize="false"
-				/>
-
+						singleContainerFullSize="false"/>
 				</f:layout>
 				<f:FormContainer title="Informaçõs pessoais">
 					<f:FormElement label="Nome">
 						<f:fields>
-							<Input value="{cliente>/nome}" id="nome" placeholder="Insira Nome"/>
+							<Input value="{cliente>/nome}" 
+								   id="nome" 
+								   placeholder="Insira Nome"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="CPF">
@@ -67,17 +63,23 @@
 					</f:FormElement>
 					<f:FormElement label="CNH">
 						<f:fields>
-							<Input value="{cliente>/CNH}" id="CNH" placeholder="Insira Nº CNH"/>
+							<Input value="{cliente>/CNH}" 
+								   id="CNH" 
+								   placeholder="Insira Nº CNH"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Categoria">
 						<f:fields>
-							<Input value="{cliente>/Categoria}" id="Categoria" placeholder="Insira Categoria"/>
+							<Input value="{cliente>/Categoria}" 
+								   id="Categoria" 
+								   placeholder="Insira Categoria"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Naturalidade">
 						<f:fields>
-							<Input value="{cliente>/Naturalidade}" id="Naturalidade" placeholder="Insira Naturalidade"/>
+							<Input value="{cliente>/Naturalidade}" 
+								   id="Naturalidade" 
+								   placeholder="Insira Naturalidade"/>
 						</f:fields>
 					</f:FormElement>
 				</f:FormContainer>
@@ -86,48 +88,55 @@
 						<f:formElements>
 							<f:FormElement label="CEP/Logradouro">
 								<f:fields>
-
 									<SearchField
 									search=".buscarEndereco"
 									value="{cliente>/cep}"
-									placeholder="Insira CEP" id="cep" >
+									placeholder="Insira CEP" 
+									id="cep" >
 									</SearchField>
-									<Input value="{cliente>/Rua}" placeholder="Insira Logradouro" id="Rua" />
+									<Input value="{cliente>/Rua}" 
+										   placeholder="Insira Logradouro" 
+										   id="Rua" />
 								</f:fields>
 							</f:FormElement>
-
 							<f:FormElement label="Número/Bairro">
 								<f:fields>
-									<Input value="{cliente>/Numero}" placeholder="Número" id="Numero">
+									<Input value="{cliente>/Numero}" 
+										   placeholder="Número" 
+										   id="Numero">
 										<layoutData>
 											<l:GridData span="XL2 L2 M2 S4" />
 										</layoutData>
 									</Input>
-									<Input value="{cliente>/Bairro}" placeholder="Bairro" id="Bairro">
+									<Input value="{cliente>/Bairro}" 
+										   placeholder="Bairro" 
+										   id="Bairro">
 									</Input>
 								</f:fields>
 							</f:FormElement>
-
 							<f:FormElement label="Complemento">
 								<f:fields>
-									<Input value="{cliente>/Complemento}" placeholder="Complemento">
+									<Input value="{cliente>/Complemento}" 
+										   placeholder="Complemento">
 									</Input>
 								</f:fields>
 							</f:FormElement>
-
 							<f:FormElement label="Cidade/Estado">
 
 								<f:fields>
-									<Input value="{cliente>/Cidade}" placeholder="Cidade" id="Cidade">
+									<Input value="{cliente>/Cidade}" 
+										   placeholder="Cidade" 
+										   id="Cidade">
 									</Input>
 								</f:fields>
 
 								<f:fields>
-									<Input value="{cliente>/Estado}" placeholder="Estado" id="Estado">
+									<Input value="{cliente>/Estado}" 
+										   placeholder="Estado" 
+										   id="Estado">
 									</Input>
 								</f:fields>
 							</f:FormElement>
-
 						</f:formElements>
 					</f:FormContainer>
 				</f:formContainers>
@@ -158,36 +167,41 @@
 						<f:formElements>
 							<f:FormElement label="Tel./whatsapp">
 								<f:fields>
-									<MaskInput value="{cliente>/TelefoneCelular}" mask="(CC)-CCCCC-CCCC" placeholderSymbol="-" placeholder="(XX)-XXXXX-XXXX">
+									<MaskInput value="{cliente>/TelefoneCelular}" 
+											   mask="(CC)-CCCCC-CCCC" 
+											   placeholderSymbol="-" 
+											   placeholder="(XX)-XXXXX-XXXX">
 										<rules>
-											<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+											<MaskInputRule maskFormatSymbol="C" 
+														   regex="[A-Z0-9]"/>
 										</rules>
 									</MaskInput>
 								</f:fields>
 							</f:FormElement>
-
 							<f:FormElement label="Fixo">
 								<f:fields>
-									<MaskInput value="{cliente>/TelefoneFixo}" mask="(CC)-CCCC-CCCC" placeholderSymbol="-" placeholder="(XX)-XXXX-XXXX">
+									<MaskInput value="{cliente>/TelefoneFixo}" 
+											   mask="(CC)-CCCC-CCCC" 
+											   placeholderSymbol="-" 
+											   placeholder="(XX)-XXXX-XXXX">
 										<rules>
-											<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+											<MaskInputRule maskFormatSymbol="C" 
+														   regex="[A-Z0-9]"/>
 										</rules>
 									</MaskInput>
 								</f:fields>
 							</f:FormElement>
-
 							<f:FormElement label="Email">
 								<f:fields>
-									<Input value="{cliente>/Email}" placeholder="Insira email" />
+									<Input value="{cliente>/Email}" 
+										   placeholder="Insira email" />
 								</f:fields>
 							</f:FormElement>
-
 						</f:formElements>
 					</f:FormContainer>
 				</f:formContainers>
 			</f:Form>
 			<ToolbarSpacer/>
-
 			<Button
 				text="Salvar"
 				class="sapUiSmallMarginBottom"
@@ -195,8 +209,7 @@
 				type="Active"
 				width="280px"
 				ariaHasPopup="Dialog"
-				icon="sap-icon://accept"
-		/>
+				icon="sap-icon://accept"/>
 		</VBox>
 	</Page>
 </mvc:View>

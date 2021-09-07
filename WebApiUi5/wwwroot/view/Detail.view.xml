@@ -13,20 +13,27 @@
 					navButtonPress=".editarCadastro"/>
 				<ToolbarSpacer/>
 				<Title text="Detalhes do Clientes" level="H1"/>
-			
 			<ToolbarSpacer/>
-
 			<Button
 					icon="sap-icon://delete"
 					text="Deletar Cadastro"
 					press=".aoClicarDeletarCadastro"
-					type="Negative"/>
+					type="Reject"/>
 				</Toolbar>
 			</customHeader>	
 		<content>
-			
             <VBox fitContainer="true">
-                <f:SimpleForm id="SimpleFormDisplay480" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout"  labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                <f:SimpleForm id="SimpleFormDisplay480" 
+							  minWidth="1024" 
+							  maxContainerCols="2" 
+							  editable="false" 
+							  layout="ResponsiveGridLayout"  
+							  labelSpanL="4" 
+							  labelSpanM="4" 
+							  emptySpanL="0" 
+							  emptySpanM="0" 
+							  columnsL="2" 
+							  columnsM="2">
                     <f:content>
                         <c:Title text="Identidade" />
                         <Label text="nome" />

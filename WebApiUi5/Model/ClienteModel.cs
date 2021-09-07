@@ -10,5 +10,6 @@ namespace WebApiUi5.Model
         public int Id { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
+        
     }
 }

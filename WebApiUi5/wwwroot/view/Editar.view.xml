@@ -7,7 +7,9 @@
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"	>
 
-	<Page showNavButton="true" navButtonPress=".onNavBack" title="Editar Cadastro">
+	<Page showNavButton="true" 
+		  navButtonPress=".onNavBack" 
+		  title="Editar Cadastro">
 		<customHeader>
 			<Toolbar>
 				<Button type="Back" press=".onNavBack" />

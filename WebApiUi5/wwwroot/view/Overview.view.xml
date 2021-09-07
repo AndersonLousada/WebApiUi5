@@ -9,7 +9,6 @@
 
 	<Page title="INVENT SOFTWARE">
 		<content>
-
 			<GenericTile 
 			    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			    header="Listar Clientes"
@@ -21,18 +20,18 @@
 					valueColor="Good" 
 					withMargin="false" icon="sap-icon://activities" />
 				</TileContent>
-			</GenericTile>	
-			
-			<GenericTile 
-				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-				header="Cadastrar Clientes"
-				subheader="Novo contato"
-				press="inserirCadastroNovo">
-				<TileContent unit="Goiânia" >
-					<NumericContent  valueColor="Good" withMargin="True" icon="sap-icon://add-contact" />
+			</GenericTile>
+			<ToolbarSpacer/>
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+						 header="Cadastrar Cliente"
+						 press="inserirCadastroNovo"
+						 frameType="OneByHalf"
+						 subheader="Novo contato"
+						 icon="sap-icon://add-contact">
+				<TileContent>
+					<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
 				</TileContent>
 			</GenericTile>
-
 		</content>
 		<FeedContent
 		contentText="A Invent Software é uma organização que se dedica a construir soluções inteligentes e que atua em todo o Brasil por meio de parceiros, simplificando os processos e aumentando a performance organizacional. Referência no mercado de software complementares horizontais e verticais para SAP® Business One, a Invent Software tem o compromisso de prover soluções com foco em inovação, oferecendo um portfólio variado e proporcionando soluções seguras aos seus clientes. Atualmente, a Invent Software atende mais de 500 empresas, através do relacionamento consolidado com a rede de parceiros SAP®. Além disso, a empresa mantém investimentos constantes no desenvolvimento de novas tecnologias, para atender as diferentes necessidades do mercado."

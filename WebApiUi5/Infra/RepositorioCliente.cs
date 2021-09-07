@@ -40,7 +40,6 @@ namespace WebApiUi5.Infra
                         cliente.Id = dbReader.GetInt32("Id");
                         cliente.Nome = dbReader.GetString("Nome");
                         cliente.CPF = dbReader.GetString("CPF");
-                       
 
                         clientes.Add(cliente);
                     }
@@ -96,6 +95,7 @@ namespace WebApiUi5.Infra
                     command.CommandText = query;
                     AddParam(command, "pNome", cliente.Nome);
                     AddParam(command, "pCPF", cliente.CPF);
+
 
                     command.ExecuteNonQuery();
                     command.CommandText = "SELECT @@IDENTITY";
