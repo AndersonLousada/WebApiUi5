@@ -1,0 +1,56 @@
+<mvc:View
+	controllerName="invent.clientes.controller.Overview"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+	xmlns:me="sap.me">
+
+	<Page title="INVENT SOFTWARE">
+		<content>
+
+			<GenericTile 
+			    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			    header="Listar Clientes"
+				subheader="Contatos cadastrados"
+			    press="navegarParaLista">
+				<TileContent unit="Goiânia" footer="16/08/2021">
+					<NumericContent  
+					value="{NumeroDeCliente>/cont}" 
+					valueColor="Good" 
+					withMargin="false" icon="sap-icon://activities" />
+				</TileContent>
+			</GenericTile>	
+			
+			<GenericTile 
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+				header="Cadastrar Clientes"
+				subheader="Novo contato"
+				press="inserirCadastroNovo">
+				<TileContent unit="Goiânia" >
+					<NumericContent  valueColor="Good" withMargin="True" icon="sap-icon://add-contact" />
+				</TileContent>
+			</GenericTile>
+
+		</content>
+		<FeedContent
+		contentText="A Invent Software é uma organização que se dedica a construir soluções inteligentes e que atua em todo o Brasil por meio de parceiros, simplificando os processos e aumentando a performance organizacional. Referência no mercado de software complementares horizontais e verticais para SAP® Business One, a Invent Software tem o compromisso de prover soluções com foco em inovação, oferecendo um portfólio variado e proporcionando soluções seguras aos seus clientes. Atualmente, a Invent Software atende mais de 500 empresas, através do relacionamento consolidado com a rede de parceiros SAP®. Além disso, a empresa mantém investimentos constantes no desenvolvimento de novas tecnologias, para atender as diferentes necessidades do mercado."
+		subheader="Rua T-61, nº 270, Setor Bueno, Goiânia-GO – (62) 3637-1774" 
+		class="sapUiSmallMargin" press="press">
+	</FeedContent>
+
+
+			
+
+	
+				
+
+
+
+
+	
+	
+	</Page>
+	
+</mvc:View>
