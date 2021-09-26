@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace WebApiUi5.Model
 {
-    public class ProdutoModel
+    public class Usuario
     {
-        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Senha { get; set; }
         public string Nome { get; set; }
-        public double Valor { get; set; }
     }
 }

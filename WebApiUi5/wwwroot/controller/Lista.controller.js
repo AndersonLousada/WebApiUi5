@@ -1,11 +1,8 @@
 sap.ui.define([
 	"invent/clientes/controller/BaseController",
-	"sap/ui/core/routing/History",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
 	"sap/ui/model/json/JSONModel"
 
-], function (BaseController, History, Filter, FilterOperator, JSONModel) {
+], function (BaseController, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("invent.clientes.controller.Lista", {
@@ -16,54 +13,68 @@ sap.ui.define([
 		},
 
 		aoConcidirRota: function () {
-			fetch("api/Cliente")
-				.then(response => response.json())
-				.then(jsonFromServer => {
-					let model = new JSONModel(jsonFromServer)
-					this.getView().setModel(model, "cliente");
-				});
-        },
+			this.exibirProgresso(x => {
+				var fetchPamans = this.getFetchParamns();
+				return fetch("api/Cliente", fetchPamans)
+					.then(response => response.json())
+					.then(jsonFromServer => {
+						let model = new JSONModel(jsonFromServer)
+						this.getView().setModel(model, "cliente");
+						return true;
+					});
+			});
+			this.exibirUsuarioLogado();
+		},
 
-		inserirCadastroNovo: function() {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("cadastroDeCliente");
+		inserirCadastroNovo: function () {
+			this.exibirProgresso(() => {
+				var oRouter = this.getOwnerComponent().getRouter();
+				oRouter.navTo("cadastroDeCliente");
+			})
+
 		},
 
 		navegarParaDetalhes: function (oEvent) {
-			var oItem = oEvent.getSource();
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("detail", {
-				id: oItem.getBindingContext("cliente").getObject().id
-			});
+			this.exibirProgresso(() => {
+				var oItem = oEvent.getSource();
+				var oRouter = this.getOwnerComponent().getRouter();
+				oRouter.navTo("detail", {
+					id: oItem.getBindingContext("cliente").getObject().id
+				});
+			})
 		},
 
 		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
+			this.exibirProgresso(() => {
 
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("overview", {}, true);
-			}
+			})
 		},
 
-		filtroDeContatos : function (oEvent) {
-			let aFilter = [];
-			let sQuery = oEvent.getParameter("query");
-			if (sQuery) {
-				aFilter.push(new Filter("Nome", FilterOperator.Contains, sQuery));
-			}
-			let oList = this.byId("listaDeContatos");
-			let oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
+		buscarNoServidor: async function () {
+			const dados = await fetch(`/api/Cliente`);
+			const cliente = await dados.json();
+			const oModel = new JSONModel(cliente)
+			this.getView().setModel(oModel, "cliente");
 		},
 
-		onSearch : function(oEvent)
-        {
-            let filterTable = new Filter("Nome", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
-            oEvent.getSource().getParent().getParent().getBinding("items").filter(filterTable);
-        },
+		buscarCliente: async function (oEvent) {
+
+			var sQuery = oEvent.getSource().getValue();
+			if (sQuery != "") {
+				var fetchPamans = this.getFetchParamns();
+				const dados = await fetch(`/api/Cliente/pesquizar/${sQuery}`, fetchPamans);
+				const cliente = await dados.json();
+				const oModel = new JSONModel(cliente)
+				this.getView().setModel(oModel, "cliente");
+
+				if (cliente.length == 0) {
+					MessageToast.show("Cliente não esncontrado!");
+				}
+			} else {
+				this.buscarNoServidor();
+			}
+		}
 	});
 });

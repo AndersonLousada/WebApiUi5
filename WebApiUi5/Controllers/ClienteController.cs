@@ -1,68 +1,148 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApiUi5.Infra;
 using WebApiUi5.Model;
 
 namespace WebApiUi5.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
-    public class ClienteController : Controller
+    public class ClienteController : BaseController
     {
-        RepositorioCliente repositorioCliente = new RepositorioCliente();
+        private readonly RepositorioDeCliente repositorioDeCliente;
+        public ClienteController(RepositorioDeCliente repositorioDeCliente)
+        {
+            this.repositorioDeCliente = repositorioDeCliente;
+        }
 
         [HttpGet]
-        public IActionResult ObterListaDeCliente()
+        [Authorize]
+        public List<Cliente> Get()
         {
-            var clienteModel = new List<ClienteModel>();
-            try
-            {
-                clienteModel = repositorioCliente.ObterClientes();
-                return Ok(clienteModel);
-            }
-            catch (Exception)
-            {
+            var listaDeClientes = repositorioDeCliente.ObterClientes(UserId());
+            return listaDeClientes;
+        }
 
-                throw new Exception("Erro no banco de dados!!!");
+        [HttpGet("{Id}")]
+        [Authorize]
+        public IActionResult GetPorId(int Id)
+        {
+            var cliente = repositorioDeCliente.ObterPorId(Id);
+            return Ok(cliente);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult InserirCliente(Cliente cliente)
+        {
+
+            if (string.IsNullOrWhiteSpace(cliente.Nome))
+            {
+                throw new Exception("Preencha o campo nome");
             }
+            if (string.IsNullOrWhiteSpace(cliente.CPF))
+            {
+                throw new Exception("Preencha o campo CPF");
+            }
+            if (cliente.DataDeNascimento == null)
+            {
+                throw new Exception("Preencha o campo Data De Nascimento");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.CNH))
+            {
+                throw new Exception("Preencha o campo CNH");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Categoria))
+            {
+                throw new Exception("Preencha o campo Categoria");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Naturalidade))
+            {
+                throw new Exception("Preencha o campo Naturalidade");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.CEP))
+            {
+                throw new Exception("Preencha o campo CEP");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Numero))
+            {
+                throw new Exception("Preencha o campo Numero");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Bairro))
+            {
+                throw new Exception("Preencha o campo Bairro");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Complemento))
+            {
+                throw new Exception("Preencha o campo Complemento");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Cidade))
+            {
+                throw new Exception("Preencha o campo Cidade");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Estado))
+            {
+                throw new Exception("Preencha o campo Estado");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.TelefoneCelular))
+            {
+                throw new Exception("Preencha o campo Telefone celular");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.TelefoneFixo))
+            {
+                throw new Exception("Preencha o campo Telefone Fixo");
+            }
+            if (string.IsNullOrWhiteSpace(cliente.Email))
+            {
+                throw new Exception("Preencha o campo Email");
+            }
+
+            cliente.CPF = cliente.CPF.Replace(".", "");
+            cliente.Usuario = UserId();
+            var clienteInserido = repositorioDeCliente.Inserir(cliente);
+            return GetPorId(clienteInserido);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public IActionResult AlterarCliente(Cliente cliente)
+        {
+            cliente.CPF = cliente.CPF.Replace(".", "");
+            repositorioDeCliente.Alterar(cliente);
+            return Ok(cliente);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public IActionResult DeletarCliente(Cliente cliente)
+        {
+            repositorioDeCliente.Deletar(cliente);
+            return Ok(cliente);
         }
 
         [HttpGet("numeroDeClientes")]
+        [Authorize]
         public IActionResult GetQuantidadeDeClientes()
         {
-            List<ClienteModel> clientes = new List<ClienteModel>();
-            clientes = repositorioCliente.ObterClientes();
+            List<Cliente> clientes = new List<Cliente>();
+            clientes = repositorioDeCliente.ObterClientes(UserId());
             var cont = clientes.Count;
             return Ok(cont);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult ObterClientePorId(int id)
+        [HttpGet("pesquizar/{nome}")]
+        [Authorize]
+        public IActionResult OpterPorNome(string nome)
         {
-            var clienteModel = new ClienteModel();
-            clienteModel = repositorioCliente.ObterPorId(id);
-            return Ok(clienteModel);
-        }
-
-        [HttpPost]
-        public int InserirCliente(ClienteModel clienteModel)
-        {
-            var id = repositorioCliente.Inserir(clienteModel);
-            return id;
-        }
-
-        [HttpPut]
-        public IActionResult AlterarCliente(ClienteModel clienteModel)
-        {
-            repositorioCliente.Alterar(clienteModel);
-            return Ok(clienteModel);
-        }
-
-        public IActionResult DeletarCliente(ClienteModel clienteModel)
-        {
-            repositorioCliente.Deletar(clienteModel);
-            return Ok(clienteModel);
+            List<Cliente> clientesLista = repositorioDeCliente.ObterPorNome(nome);
+            if (clientesLista.Count >= 1)
+            {
+                return Ok(clientesLista);
+            }
+            return NotFound();
         }
     }
 }

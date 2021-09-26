@@ -1,0 +1,86 @@
+﻿<mvc:View
+	controllerName="invent.clientes.controller.NovoUsuario"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	height="100%"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<Button icon="sap-icon://accept" type="Transparent" press="onPress" ariaLabelledBy="editButtonLabel"/>
+				<Title text="Invent Software" level="H1"/>
+				<ToolbarSpacer/>
+				<Button text="Login" icon="sap-icon://visits" press=".navegarParaLogin"/>
+			</Toolbar>
+		</customHeader>
+
+		<VBox alignItems="Left" >
+			<f:Form id="FormChange480_12120" editable="true">
+
+				<f:title>
+					<core:Title text="Inserir Novo Usuario" />
+				</f:title>
+
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="1"
+						singleContainerFullSize="false"/>
+				</f:layout>
+				<f:FormContainer title="">
+
+
+					<f:FormElement label="Usuário">
+						<f:fields>
+							<Input width="280px" value="{login>/Nome}" id="Nome" placeholder="Ex.: invent.Nome"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Nome">
+						<f:fields>
+							<Input width="280px" value="{login>/userName}" id="userName" placeholder="Nome"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Senha">
+						<f:fields>
+							<Input width="280px" value="{login>/password}" id="userPass" placeholder="Senha" type="Password"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Confirme a Senha">
+						<f:fields>
+							<Input width="280px" value="{login>/ConfirmPassword}" id="userConfirm" placeholder="Confirme a Senha" type="Password"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="">
+						<f:fields>
+							<Button width="280px" type="Default" text="Salvar" press=".aoClicarEmSalvarNovo" icon="sap-icon://visits"/>
+						</f:fields>
+					</f:FormElement>
+
+				</f:FormContainer>
+			</f:Form>
+		</VBox>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<ImageContent src="/view/Image/inventSoftware.png">
+				</ImageContent>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

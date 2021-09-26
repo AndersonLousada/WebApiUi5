@@ -15,15 +15,19 @@ sap.ui.define([
         },
 
         aoConcidirRota: function (rota) {
-            this.Id = rota.getParameter("arguments").id;
-            console.log(this.Id)
-            fetch(`api/Cliente/${this.Id}`)
+            this.exibirProgresso(x => {
+                var fetchPamans = this.getFetchParamns();
 
-                .then(response => response.json())
-                .then(jsonFromServer => {
-                    let model = new JSONModel(jsonFromServer)
-                    this.getView().setModel(model, "cliente");
-                });
+                this.Id = rota.getParameter("arguments").id;
+
+                fetch(`api/Cliente/${this.Id}`, fetchPamans)
+                    .then(response => response.json())
+                    .then(jsonFromServer => {
+                        let model = new JSONModel(jsonFromServer)
+                        this.getView().setModel(model, "cliente");
+                    });
+            });
+            this.exibirUsuarioLogado();
         },
 
         onNavBack: function () {
@@ -48,14 +52,9 @@ sap.ui.define([
         aoClicarDeletarCadastro: function () {
 
             var modelDoCliente = this.getView().getModel("cliente").getData();
-            var paramsDoFecth = {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: 'DELETE',
-                body: JSON.stringify(modelDoCliente)
-            }
+            var oRouter = this.getOwnerComponent().getRouter();
+            var paramsDoFecth = this.getDeleteFetchParamns(modelDoCliente);
+
 
             var oRouter = this.getOwnerComponent().getRouter();
             MessageBox.warning("Deseja realmente deletar cliente?.", {
@@ -63,7 +62,7 @@ sap.ui.define([
                 emphasizedAction: MessageBox.Action.OK,
                 onClose: async function (sAction) {
                     if (sAction === "OK") {
-                       
+
                         fetch("api/Cliente", paramsDoFecth)
                             .then(x => {
                                 if (x.ok) {
@@ -74,7 +73,7 @@ sap.ui.define([
                             })
                             .then(x => {
                                 const message = `Cliente ${x.id} deletado com sucesso !!`;
-                                
+
                                 MessageBox.alert(message, {
                                     onClose: function () {
                                         oRouter.navTo("listaName", {}, true);
@@ -92,4 +91,4 @@ sap.ui.define([
             });
         }
     });
-});        
+}); 

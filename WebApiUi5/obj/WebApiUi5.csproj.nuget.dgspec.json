@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ander\\source\\repos\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj": {}
+    "C:\\Users\\ander\\source\\projects\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ander\\source\\repos\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj": {
+    "C:\\Users\\ander\\source\\projects\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ander\\source\\repos\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj",
+        "projectUniqueName": "C:\\Users\\ander\\source\\projects\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj",
         "projectName": "WebApiUi5",
-        "projectPath": "C:\\Users\\ander\\source\\repos\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj",
+        "projectPath": "C:\\Users\\ander\\source\\projects\\WebApiUi5\\WebApiUi5\\WebApiUi5.csproj",
         "packagesPath": "C:\\Users\\ander\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ander\\source\\repos\\WebApiUi5\\WebApiUi5\\obj\\",
+        "outputPath": "C:\\Users\\ander\\source\\projects\\WebApiUi5\\WebApiUi5\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,15 +22,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net5.0": {
+            "targetAlias": "netcoreapp5.0",
             "projectReferences": {}
           }
         },
@@ -41,12 +41,16 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net5.0": {
+          "targetAlias": "netcoreapp5.0",
           "dependencies": {
-            "Microsoft.Data.SqlClient": {
+            "Microsoft.AspNetCore.Authentication": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -71,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.206\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.207\\RuntimeIdentifierGraph.json"
         }
       }
     }

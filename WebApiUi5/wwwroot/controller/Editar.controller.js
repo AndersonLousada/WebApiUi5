@@ -6,24 +6,28 @@
 ], function (BaseController, History, MessageBox, JSONModel) {
 	"use strict";
 
-		return BaseController.extend("invent.clientes.controller.Editar", {
+	return BaseController.extend("invent.clientes.controller.Editar", {
 
 		onInit: function () {
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 			let cliente = {
 			};
-			this.setClienteModel(cliente);
+			this.setUserModel(cliente);
 			this.attachRoute("editarCadastro", this.aoConcidirRota);
 		},
 
-		setClienteModel: function (data) {
-			var oModel = new JSONModel(data);
-			this.getView().setModel(oModel, "cliente");
-		},
-
-		getClienteModel: function (data) {
-			var oModel = new JSONModel(data);
-			return this.getView().getModel("cliente").getData();
+		aoConcidirRota: function (rota) {
+			this.exibirProgresso(x => {
+				this.Id = rota.getParameter("arguments").id;
+				var fetchPamans = this.getFetchParamns();
+				fetch(`api/Cliente/${this.Id}`, fetchPamans)
+					.then(response => response.json())
+					.then(jsonFromServer => {
+						let model = new JSONModel(jsonFromServer)
+						this.getView().setModel(model, "cliente");
+					});
+			});
+			this.exibirUsuarioLogado();
 		},
 
 		onNavBack: function () {
@@ -43,35 +47,30 @@
 		},
 
 		buscarEndereco: async function () {
+
 			try {
+
 				let cliente = this.getClienteModel();
 				const url = `https://viacep.com.br/ws/${cliente.cep}/json/`;
 				const dados = await fetch(url);
 				const endereco = await dados.json();
-				cliente.Rua = endereco.logradouro;
-				cliente.Numero = endereco.gia;
-				cliente.Bairro = endereco.bairro;
-				cliente.Cidade = endereco.localidade;
-				cliente.Estado = endereco.uf;
+				cliente.rua = endereco.logradouro;
+				cliente.numero = endereco.gia;
+				cliente.bairro = endereco.bairro;
+				cliente.cidade = endereco.localidade;
+				cliente.estado = endereco.uf;
 				this.setClienteModel(cliente);
 
 			} catch (error) {
 				MessageBox.error(`Erro ao fazer consulta! ${error}`);
 			}
+
 		},
 
 		aoClicarNoBotaoSalvar: function () {
-			var modelDoCliente = this.getClienteModel();
-			modelDoCliente.DataDeNascimento = moment(modelDoCliente.DataDeNascimento).format("YYYY-MM-DDTHH:mm:ss");
-			console.log(modelDoCliente)
-			var paramsDoFecth = {
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				method: 'PUT',
-				body: JSON.stringify(modelDoCliente)
-			}
+			var modelDoCliente = this.getUserModel();
+			var oRouter = this.getOwnerComponent().getRouter();
+			var paramsDoFecth = this.getPutFetchParamns(modelDoCliente);
 
 			fetch("api/Cliente", paramsDoFecth)
 				.then(x => {
@@ -82,23 +81,15 @@
 					return Promise.reject(x)
 				})
 				.then(x => {
-					const message = `Cliente ${x.id} salvo com sucesso !!`;
-					MessageBox.alert(message);
+					const message = `Cliente ${x.id} alterado com sucesso !!`;
+					MessageBox.alert(message, {
+						onClose: function () {
+							oRouter.navTo("listaName", {}, true);
+						}
+					});
 				})
 				.catch(x => {
 					MessageBox.error("Houve um erro " + x)
-				});
-		},
-
-		aoConcidirRota: function (rota) {
-			this.Id = rota.getParameter("arguments").id;
-			console.log(this.Id)
-			fetch(`api/Cliente/${this.Id}`)
-
-				.then(response => response.json())
-				.then(jsonFromServer => {
-					let model = new JSONModel(jsonFromServer)
-					this.getView().setModel(model, "cliente");
 				});
 		},
 	});

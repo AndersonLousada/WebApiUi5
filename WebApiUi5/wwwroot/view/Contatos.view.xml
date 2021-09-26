@@ -1,0 +1,103 @@
+﻿<mvc:View
+	controllerName="invent.clientes.controller.Contatos"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	height="100%"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<Button type="Back" press=".onNavBack" />
+				<Title text="Invent Software" level="H1"/>
+			</Toolbar>
+		</customHeader>
+
+		<VBox alignItems="Left" >
+			<f:Form id="FormChange480_12120" editable="true">
+				<f:title>
+					<core:Title text="Fale com a gente" />
+				</f:title>
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="1"
+						singleContainerFullSize="false"/>
+				</f:layout>
+				<f:FormContainer title="">
+
+					<f:FormElement label="Nome">
+						<f:fields>
+							<Input value="{cliente>/nome}" id="nome" placeholder="Insira Nome"/>
+						</f:fields>
+					</f:FormElement>
+
+
+					<f:FormElement label="Email">
+						<f:fields>
+							<Input value="{cliente>/emil}" id="email" placeholder="Email"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Empresa">
+						<f:fields>
+							<Input value="{cliente>/empresa}" id="empresa" placeholder="Empresa"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Cargo">
+						<f:fields>
+							<Input value="{cliente>/cargo}" id="cargo" placeholder="Cargo"/>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Telefone">
+						<f:fields>
+							<MaskInput value="{cliente>/telefoneCelular}" mask="(CC)-CCCCC-CCCC" placeholderSymbol="-" placeholder="(XX)-XXXXX-XXXX">
+								<rules>
+									<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+								</rules>
+							</MaskInput>
+						</f:fields>
+					</f:FormElement>
+
+					<f:FormElement label="Mensagem">
+						<TextArea value="" rows="8" />
+					</f:FormElement>
+
+					<f:FormElement>
+						<CheckBox text="Eu concordo em receber comunicações." selected="{/child1}"/>
+
+					</f:FormElement>
+					<f:FormElement>
+						<Button	text="Enviar" Type="Active" width="280px" icon="sap-icon://accept"/>
+					</f:FormElement>
+				</f:FormContainer>
+			</f:Form>
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<Text text="Prometemos não utilizar suas informações de contato para enviar qualquer tipo de SPAM. "/>
+			</l:VerticalLayout>
+		</VBox>
+		<footer>
+			<OverflowToolbar>
+
+				<ObjectHeader>
+					<ObjectAttribute press=".navegarParaOLink" text="inventsoftware.com.br" active="true"/>
+				</ObjectHeader>
+				<ToolbarSpacer/>
+				<ImageContent  src="/view/Image/inventSoftware.png"></ImageContent>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

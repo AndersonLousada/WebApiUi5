@@ -5,51 +5,58 @@
 	height="100%"
 	xmlns:mvc="sap.ui.core.mvc"
     xmlns:l="sap.ui.layout"
-	xmlns:me="sap.me">
-
-	<Page title="INVENT SOFTWARE">
+	xmlns:me="sap.me"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page showNavButton="true" navButtonPress=".onNavBack" title="INVENT SOFTWARE">
+		<customHeader>
+			<Toolbar>
+				<Button text="{user>/nome}"
+						icon="sap-icon://employee"/>
+				<ToolbarSpacer/>
+				<Button
+                        icon="sap-icon://journey-arrive"
+                        text="Sair"
+                        press=".aoClicarNoBotaoSair"
+						type="Transparent"
+						ariaHasPopup="Dialog"/>
+			</Toolbar>
+		</customHeader>
 		<content>
-			<GenericTile 
-			    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			<GenericTile
+			    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			    header="Listar Clientes"
 				subheader="Contatos cadastrados"
 			    press="navegarParaLista">
-				<TileContent unit="Goiânia" footer="16/08/2021">
-					<NumericContent  
-					value="{NumeroDeCliente>/cont}" 
-					valueColor="Good" 
+				<TileContent >
+					<NumericContent
+					value="{NumeroDeCliente>/cont}"
+					valueColor="Good"
 					withMargin="false" icon="sap-icon://activities" />
 				</TileContent>
 			</GenericTile>
-			<ToolbarSpacer/>
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-						 header="Cadastrar Cliente"
-						 press="inserirCadastroNovo"
-						 frameType="OneByHalf"
-						 subheader="Novo contato"
-						 icon="sap-icon://add-contact">
-				<TileContent>
-					<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
+
+			<GenericTile
+			    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="Cadastrar Cliente"
+				press="inserirCadastroNovo">
+				<TileContent unit="" footer="">
+					<ImageContent src="sap-icon://add-employee" />
 				</TileContent>
 			</GenericTile>
+
 		</content>
 		<FeedContent
 		contentText="A Invent Software é uma organização que se dedica a construir soluções inteligentes e que atua em todo o Brasil por meio de parceiros, simplificando os processos e aumentando a performance organizacional. Referência no mercado de software complementares horizontais e verticais para SAP® Business One, a Invent Software tem o compromisso de prover soluções com foco em inovação, oferecendo um portfólio variado e proporcionando soluções seguras aos seus clientes. Atualmente, a Invent Software atende mais de 500 empresas, através do relacionamento consolidado com a rede de parceiros SAP®. Além disso, a empresa mantém investimentos constantes no desenvolvimento de novas tecnologias, para atender as diferentes necessidades do mercado."
-		subheader="Rua T-61, nº 270, Setor Bueno, Goiânia-GO – (62) 3637-1774" 
+		subheader="Rua T-61, nº 270, Setor Bueno, Goiânia-GO – (62) 3637-1774"
 		class="sapUiSmallMargin" press="press">
-	</FeedContent>
-
-
-			
-
-	
-				
-
-
-
-
-	
-	
+		</FeedContent>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<ImageContent src="/view/Image/inventSoftware.png">
+				</ImageContent>
+			</OverflowToolbar>
+		</footer>
 	</Page>
-	
 </mvc:View>

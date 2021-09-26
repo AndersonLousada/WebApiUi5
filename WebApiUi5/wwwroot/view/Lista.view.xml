@@ -2,60 +2,67 @@
 	controllerName="invent.clientes.controller.Lista"
 	xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
-    <Page id="app">
-
-        <customHeader>
+	<Page id="app">
+		<customHeader>
 			<Toolbar>
 				<Button type="Back" press=".onNavBack" />
+				<Button text="{user>/nome}"
+						icon="sap-icon://employee"/>
 				<ToolbarSpacer/>
 				<Title text="Lista de Clientes" level="H1"/>
 				<ToolbarSpacer/>
-                <Button
+				<Button
                         icon="sap-icon://add-employee"
-                        text="Cadastro Novo"
-                        press="inserirCadastroNovo"/>
+                        text="Cadastrar Novo"
+                        press="inserirCadastroNovo"
+						type="Accept"/>
 			</Toolbar>
 		</customHeader>
-
-    <Table
-        id="listaDeContatos"
-        items="{
+		<Table
+			id="listaDeContatos"
+			items="{
             path : 'cliente>/',
             sorter : {
-            path : 'ShipperName'}}"> 
-            
-            <headerToolbar>
-                <Toolbar>
-                    <Title
+            path : 'ShipperName'}}">
+			<headerToolbar>
+				<Toolbar>
+					<Title
                         id="tableHeader"
                         text="{worklistView>/worklistTableTitle}"/>
-                    <ToolbarSpacer/>
-                    <SearchField width="20%" search="filtroDeContatos" liveChange="onSearch" />
-                    
-                </Toolbar>
-            </headerToolbar>
+					<ToolbarSpacer/>
+					<SearchField width="20%" search=".buscarCliente" liveChange="onSearch" />
 
-            <columns>
-                <Column>
-                    <Text text="Código" />
-                </Column>
-                <Column>
-                    <Text text="Nome" />
-                </Column>
-                <Column>
-                    <Text text="CPF" />
-                </Column>
-            </columns>
-            <items>
-                <ColumnListItem vAlign="Middle" type="Navigation" press="navegarParaDetalhes">
-                    <cells>
-                        <Text text="{cliente>id}" wrapping="false" />
-                        <Text text="{cliente>nome}" wrapping="false"/>
-                        <Text text="{cliente>cpf}" wrapping="false"/>
-                    </cells>
-                </ColumnListItem>
-            </items>
-    </Table>
-    </Page>
+				</Toolbar>
+			</headerToolbar>
+
+			<columns>
+				<Column>
+					<Text text="Código" />
+				</Column>
+				<Column>
+					<Text text="Nome" />
+				</Column>
+				<Column>
+					<Text text="CPF" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Navigation" press="navegarParaDetalhes">
+					<cells>
+						<Text text="{cliente>id}" wrapping="false" />
+						<Text text="{cliente>nome}" wrapping="false"/>
+						<Text text="{cliente>cpf}" wrapping="false"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<ImageContent src="/view/Image/inventSoftware.png">
+				</ImageContent>
+			</OverflowToolbar>
+		</footer>
+	</Page>
 
 </mvc:View>

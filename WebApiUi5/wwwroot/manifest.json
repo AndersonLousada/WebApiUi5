@@ -3,8 +3,8 @@
   "sap.app": {
     "id": "invent.clientes",
     "type": "application",
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
+    "title": "Clientes",
+    "description": "Clientes",
     "applicationVersion": {
       "version": "1.0.0"
     }
@@ -59,7 +59,7 @@
       },
       "routes": [
         {
-          "pattern": "",
+          "pattern": "home",
           "name": "overview",
           "target": "overview"
         },
@@ -87,8 +87,22 @@
           "pattern": "editarCadastro/{id}",
           "name": "editarCadastro",
           "target": "editarCadastro"
+        },
+        {
+          "pattern": "",
+          "name": "login",
+          "target": "login"
+        },
+        {
+          "pattern": "inserirNovo",
+          "name": "inserirNovo",
+          "target": "inserirNovo"
+        },
+        {
+          "pattern": "faleConosco",
+          "name": "faleConosco",
+          "target": "faleConosco"
         }
-
       ],
       "targets": {
         "overview": {
@@ -114,6 +128,18 @@
         "editarCadastro": {
           "viewId": "editarCadastro",
           "viewName": "Editar"
+        },
+        "login": {
+          "viewId": "login",
+          "viewName": "Login"
+        },
+        "inserirNovo": {
+          "viewId": "inserirNovo",
+          "viewName": "NovoUsuario"
+        },
+        "faleConosco": {
+          "viewId": "faleConosco",
+          "viewName": "Contatos"
         }
 
       }
